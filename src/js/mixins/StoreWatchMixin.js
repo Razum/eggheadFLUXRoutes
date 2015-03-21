@@ -4,7 +4,7 @@ var appStore = require('../stores/app-store');
 var StoreWatchMixin =  function (cb) {
     return {
         getInitialState: function () {
-            return cb()
+            return cb(this)
         },
 
         componentWillMount: function() {
@@ -14,7 +14,7 @@ var StoreWatchMixin =  function (cb) {
             appStore.removeChangeListener(this._onChange)
         },
         _onChange: function () {
-            this.setState(cb())
+            this.setState(cb(this))
         }
     }
 };

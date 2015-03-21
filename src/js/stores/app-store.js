@@ -56,9 +56,9 @@ function _addItem(item) {
 
 function _cartTotals () {
     var qty = 0, total = 0;
-    _carItems.forEach(function (cartItem) {
+    _cartItems.forEach(function (cartItem) {
         qty += cartItem.qty;
-        total += cartItem.qty * cartItem.total;
+        total += cartItem.qty * cartItem.cost;
     });
     return {qty: qty, total: total};
 }

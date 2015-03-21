@@ -1,32 +1,23 @@
 /** @jsx React.DOM */
 var React = require('react');
-var AppActions = require('../../actions/app-actions');
 var appStore = require('../../stores/app-store');
-var AddToCart = require('./app-addtocart');
-
+var StoreWatchMixin = require('../../mixins/StoreWatchMixin');
+var CatalogItem = require('./app-catalogitem');
 
 function getCatalog() {
     return {items: appStore.getCatalog()};
 }
 
 var Catalog = React.createClass({
-
-    getInitialState: function () {
-        return getCatalog()
-    },
-
+    mixins: [StoreWatchMixin(getCatalog)],
     render: function () {
         var items = this.state.items.map(function (item, i) {
-            return (<tr key={i}>
-                <td>{item.title}</td>
-                <td>{item.cost}$</td>
-                <td><AddToCart item={item} /></td>
-            </tr>)
+            return <CatalogItem item={item} />
         });
         return (
-            <table className="table table-hover">
+            <div className="row">
             {items}
-            </table>
+            </div>
         )
     }
 });

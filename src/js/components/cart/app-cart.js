@@ -5,7 +5,7 @@ var RemoveFromCart = require('./app-removefromcart');
 var Increase = require('./app-increase');
 var Decrease = require('./app-decrease');
 var StoreWatchMixin = require('../../mixins/StoreWatchMixin');
-
+var Link = require('react-router-component').Link;
 
 function cartItems() {
     return {items: appStore.getCart()};
@@ -26,7 +26,7 @@ var Cart = React.createClass({
                 <td>${subtotal}</td>
             </tr>)
         });
-        return (
+        return (<div>
             <table className="table table-hover">
                 <thead>
                     <tr>
@@ -46,8 +46,9 @@ var Cart = React.createClass({
                         <td>{total}</td>
                     </tr>
                 </tfoot>
-
             </table>
+            <Link href='/'>Continue Shopping</Link>
+        </div>
         )
     }
 });

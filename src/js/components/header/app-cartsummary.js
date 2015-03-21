@@ -10,13 +10,7 @@ function CartTotals () {
 }
 
 var CartSummary = React.createClass({
-    mixins:['StoreWatchMixin'],
-    getInitialState: function () {
-        return {
-            qty: 0,
-            total: 0
-        }
-    },
+    mixins:[StoreWatchMixin(CartTotals)],
     render: function () {
 
         return (
